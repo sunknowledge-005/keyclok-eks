@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: quay.io/keycloak/keycloak:23.0.6-0
+        ports:
+        - containerPort: 8080
+        - containerPort: 9443
+        - containerPort: 10990
+        volumeMounts:
+        - name: realm-config
+          mountPath: /opt/keycloak/data/import
+        - name: keycloak-db
+          mountPath: /opt/keycloak/data
+        env:
+        - name: KEYCLOAK_ADMIN
+          value: "admin"
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: "admin"
+
+        - name: KEYCLOAK_SSL_REQUIRED
+          value: "none"  # Disable SSL
+        command: ["/opt/keycloak/bin/kc.sh","start-dev", "--import-realm"]
+      volumes:
+      - name: realm-config
+        configMap:
+          name: realm-config
+      - name: keycloak-db
+        emptyDir: {}
