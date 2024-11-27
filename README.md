@@ -1,1 +1,1 @@
-# keyclok-eks
+When we deploy keycloak in any cluster, if we access it and try to do log in it will give erro "https required".So use keycloak.yml file which is present in this repo and deploy it in any cluster and do login it will not give error along with if we want to add any volume or any confguraion, we can do as it is.
