@@ -1,0 +1,1 @@
+"C:\Program Files\Docker\Docker\resources\bin\docker-compose.exe"  -f "D:\keycloak\docker-compose.yml" up  -d 

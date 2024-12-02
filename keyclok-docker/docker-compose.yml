@@ -1,0 +1,23 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.6-0
+    volumes:
+      - ./realm-config:/opt/keycloak/data/import
+      - keycloak-db:/opt/keycloak/data/
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME_STRICT=false
+      - KC_HTTPS_ENABLED=false
+      - KC_PROXY=edge
+    ports:
+      - 9080:8080
+      - 9443:9443
+      - 10990:10990
+    command: >
+      start-dev
+      --import-realm
+      --spi-import-export-strategy=OVERWRITE_EXISTING
+
+volumes:
+  keycloak-db:
