@@ -5,7 +5,7 @@ JENKINS-EKS INTEGRATION
 =========================
 We donot need any plugin to install to connect to eks cluster.We onle need to install aws cli,configure it by providing appropritae iam use access_key,secret_access_key and install kubectl command.After that update the kubeconfig file of the cluster. Then use the Jenkinsfile present in this repo to connect to eks and execute kubectl commands to deploy application.
 
-COMMANDS
+COMMANDS TO BE EXECUTED ON JENKINS CONTROLLER/JENKINS_SLAVE
 =========
 
 # Install AWS CLI v2
